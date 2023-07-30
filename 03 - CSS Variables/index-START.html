@@ -22,6 +22,17 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -46,6 +57,30 @@
   </style>
 
   <script>
+    const img = document.querySelector("img")
+
+    const inputs = document.querySelectorAll(".controls input")
+
+    function handleUpdate(){
+        const suffix = this.dataset.sizing || '';
+        img.style.setProperty(`--${this.name}`,this.value + suffix)
+        console.log(this.name)
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate))
+
+    // const spacing = document.querySelector("#spacing")
+    // spacing.onchange =
+    // const blur = document.querySelector("#blur")
+    // blur.onchange = function (){
+    //   const suffix = this.dataset.sizing || '';
+    //   img.style.setProperty("--blur",this.value + suffix)
+    // }
+    // const base = document.querySelector("#base")
+    // base.onchange = function (){
+    //   const suffix = this.dataset.sizing || '';
+    //   img.style.setProperty("--base",this.value + suffix)
+    // }
   </script>
 
 </body>
